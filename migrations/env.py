@@ -7,7 +7,7 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from app.core.config import get_settings
-from app.database.base import Base
+from app.database import models
 
 config = context.config
 
@@ -22,7 +22,7 @@ if not settings.database_url:
     )
 
 # Alembic needs all model tables registered in this metadata.
-target_metadata = Base.metadata
+target_metadata = models.Base.metadata
 
 # Escape percent signs for ConfigParser interpolation.
 config.set_main_option(
